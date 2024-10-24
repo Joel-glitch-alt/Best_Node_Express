@@ -1,0 +1,8 @@
+Express
+Pg
+Nodemon
+passport
+passport-local
+cors,
+morgan
+bcrypt
