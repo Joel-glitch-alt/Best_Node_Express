@@ -15,6 +15,6 @@ router.put('/:id', controller.updateStudent);
 
 router.delete('/:id', controller.deleteStudentById); 
 
-router.post("/register", controller.registerStudent); 
+//router.post("/register", controller.registerStudent); 
 
 module.exports = router;

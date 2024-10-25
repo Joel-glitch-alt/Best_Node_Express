@@ -50,7 +50,7 @@ const addStudent = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     
     // Insert the new student into the database
-    const result = await pool.query(queries.registerStudent, [name, email, hashedPassword]);
+    const result = await pool.query(queries.addStudent, [name, email, age, dob, hashedPassword]);
 
     res.status(201).json({
       message: 'Student added successfully',
@@ -127,33 +127,33 @@ const checkEmailExists = (req, res, next) => {
   );
 };
 // Register Student
-const registerStudent = async (req, res, next) => {
-  const { name, email, password } = req.body;
+// const registerStudent = async (req, res, next) => {
+//   const { name, email, password } = req.body;
 
-  try {
-    // Check if email already exists
-    const existingStudent = await pool.query(queries.checkEmailExists, [email]);
+//   try {
+//     // Check if email already exists
+//     const existingStudent = await pool.query(queries.checkEmailExists, [email]);
 
-    if (existingStudent.rows.length > 0) {
-      return res.status(400).json({ message: 'Email already exists' });
-    }
+//     if (existingStudent.rows.length > 0) {
+//       return res.status(400).json({ message: 'Email already exists' });
+//     }
 
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
+//     // Hash the password
+//     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Insert the new student into the database
-    const result = await pool.query(queries.registerStudent, [name, email, hashedPassword]);
+//     // Insert the new student into the database
+//     const result = await pool.query(queries.registerStudent, [name, email, age, hashedPassword]);
 
-    // Respond with the registered student's info (excluding the password)
-    res.status(201).json({
-      message: 'Student registered successfully',
-      student: result.rows[0]
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server error' });
-  }
-};
+//     // Respond with the registered student's info (excluding the password)
+//     res.status(201).json({
+//       message: 'Student registered successfully',
+//       student: result.rows[0]
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: 'Server error' });
+//   }
+// };
 
 module.exports = {
   getStudents,
@@ -162,5 +162,5 @@ module.exports = {
   updateStudent,
   deleteStudentById,
   checkEmailExists,
-  registerStudent 
+ // registerStudent 
 };
