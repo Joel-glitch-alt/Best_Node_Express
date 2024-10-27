@@ -10,6 +10,9 @@ const deleteStudentById = `DELETE FROM students WHERE id = $1 RETURNING *`;
 
 const checkEmailExists = `SELECT * FROM students WHERE email = $1`;
 
+const getUserByNameAndEmail = 'SELECT * FROM students WHERE name = $1 AND email = $2';
+
+
 //const registerStudent = 'INSERT INTO students (name, email, password) VALUES ($1, $2, $3) RETURNING id, name, email'
 
 module.exports = {
@@ -19,5 +22,6 @@ module.exports = {
     addStudent,
     updateStudent,
     deleteStudentById,
-    checkEmailExists 
+    checkEmailExists,
+    getUserByNameAndEmail 
 }

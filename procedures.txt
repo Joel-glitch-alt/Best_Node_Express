@@ -6,3 +6,5 @@ passport-local
 cors,
 morgan
 bcrypt
+jsonwebtoken 
+cookie-parser
